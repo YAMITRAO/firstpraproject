@@ -1,0 +1,22 @@
+.projectContainer{
+
+    width: 60%;
+    height: auto;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start ;
+    align-items: center;
+}
+
+.itemListContainer {
+    margin-top: 40px;
+    background-color: rgba(153, 207, 73, 0.8);
+    width: 480px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 10px 0px;
+}
