@@ -1,6 +1,7 @@
 import ErrorCard from "../ErrorCard/ErrorCard";
 import "./Form.css"
 import { useState } from "react";
+import ReactDOM  from "react-dom";
 
 
 const Form = (props ) => {
@@ -63,7 +64,7 @@ const Form = (props ) => {
 
     return( 
         <>
-        {isInputValid ? formVar : <> <ErrorCard errormsg = {errorMsg} setCancle ={ cancleHandler }/> {formVar}</>}
+        {isInputValid ? formVar : <> {ReactDOM.createPortal(<ErrorCard errormsg = {errorMsg} setCancle ={ cancleHandler }/>, document.getElementById('before_root'))} {formVar}</>}
         </>
     )
 }

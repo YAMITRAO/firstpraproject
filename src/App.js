@@ -1,13 +1,14 @@
 import './App.css';
+import React from 'react';
 import Project from './Component/Project';
 
 
 function App() {
   
   return (
-    <div> 
+    <React.Fragment> 
       <Project />
-    </div> 
+    </React.Fragment> 
   );
 }
 export default App;
