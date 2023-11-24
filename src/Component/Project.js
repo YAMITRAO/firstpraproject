@@ -6,8 +6,8 @@ import { useState } from "react";
 const Project = ( ) => {
 
     const dataDummy = [
-        {userName:"Amit", age: 25},
-        {userName:"Aans", age: 28}
+        {userName:"Amit", collegeName: "Xyz Education",age: 25},
+        {userName:"Aans", collegeName: "Abc Institute", age: 28}
     ]
 
     const [data, setData] = useState(dataDummy);

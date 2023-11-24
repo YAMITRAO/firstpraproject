@@ -1,34 +1,42 @@
 import ErrorCard from "../ErrorCard/ErrorCard";
 import "./Form.css"
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ReactDOM  from "react-dom";
 
 
 const Form = (props ) => {
 
     const [isInputValid, setIsInputValid] = useState(true);
+    const [errorMsg, setErrorMsg] = useState( "");
 
-    const [errorMsg, setErrorMsg] = useState( "")
+    let enteredUserName = useRef();
+    let enteredAge = useRef();
+    let enteredCollege = useRef();
 
-    let username = "";
-    let userage = 0 ;
-    const usernameHandler = (e) => {
-        username = e.target.value;
-    }
+    // let username = "";
+    // let userage = 0 ;
+    // const usernameHandler = (e) => {
+    //     username = e.target.value;
+    // }
 
-    const ageHandler = (e) => {
-       userage =  e.target.value;
-    }
+    // const ageHandler = (e) => {
+    //    userage =  e.target.value;
+    // }
 
     const submitHandler = (e) => {
+        // console.log(enteredUserName.current.value);
+        // console.log(enteredAge.current.value);
+        let usernameentered = enteredUserName.current.value;
+        let userageentered = Number(enteredAge.current.value);
+        let usercollegeentered = enteredCollege.current.value;
         e.preventDefault();
-        if(username.length > 0 && userage > 0){
+        if(usernameentered.length > 0 && userageentered > 0 && usercollegeentered.length >0){
             let temp = {
-                userName: username, age:userage
+                userName: usernameentered,collegeName:usercollegeentered, age:userageentered
             }
             props.importData(temp);
         }
-        else if(userage <= 0 && username.length > 0){
+        else if(userageentered <= 0 && usernameentered.length > 0){
             setErrorMsg("Negative age is not valid enrty")
             setIsInputValid(false);
         }
@@ -36,6 +44,9 @@ const Form = (props ) => {
             setErrorMsg("Please entry correct userName and userAge")
             setIsInputValid(false);
         }
+        enteredUserName.current.value = "";
+        enteredAge.current.value ="";
+        enteredCollege.current.value ="";
     }
 
 
@@ -43,12 +54,17 @@ const Form = (props ) => {
     <form onSubmit={ submitHandler}>
         <div className="usernameContainer">
             <label>UserName</label>
-            <input onChange={ usernameHandler } type="text" id="usernameInput" name="username"  />
+            <input  ref={enteredUserName} type="text" id="usernameInput" name="username"  />
+        </div>
+
+        <div className="collegeContainer">
+            <label>College Name</label>
+            <input  ref={enteredCollege} type="text" id="ageInput" name="age" />
         </div>
 
         <div className="ageContainer">
             <label>Age</label>
-            <input onChange={ageHandler} type="number" id="ageInput" name="age" />
+            <input  ref={enteredAge} type="number" id="ageInput" name="age" />
         </div>
 
         <div className="buttonContainer">
